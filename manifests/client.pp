@@ -9,7 +9,8 @@
 #   Defaults to 'present'.
 #
 class barbican::client (
-  $ensure = 'present',
+  $ensure              = 'present',
+  $client_package_name = $::barbican::params::client_package_name,
 ) {
 
   include ::barbican::deps
@@ -17,7 +18,7 @@ class barbican::client (
 
   package { 'python-barbicanclient':
     ensure => $ensure,
-    name   => $::barbican::params::client_package_name,
+    name   => $client_package_name,
     tag    => 'openstack',
   }
 
